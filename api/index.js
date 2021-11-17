@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 // import routes
-const tradeRoutes = require('./routes/trades.js');
+const tradeRoutes = require('../routes/trades.js');
 
 //initialize express
 const app = express();
