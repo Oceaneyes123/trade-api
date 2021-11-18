@@ -11,16 +11,29 @@ let trades = [
     "symbol": "GOLD",
     "direction": "BUY",
     "entryPrice": 1820,
-    "stopLoss": 1810
+    "stopLoss": 1810,
+    "recover": false
    }
 ]
 
 let id = 1
 
+let message = ""
+
+
 //all routes start with /trades
 //route to get all trades
 router.get('/', (req, res) => {
-    res.send(trades);
+    let lastTrade = trades[trades.length - 1]
+    if("recover" in lastTrade){
+        message = lastTrade.id + "/" + lastTrade.symbol + "/" + lastTrade.direction + "/" + lastTrade.entryPrice + "/" + lastTrade.stopLoss + "/" + lastTrade.recover
+        res.send(message)
+    }
+})
+
+//route to get all trades
+router.get('/all', (req, res) => {
+    res.send(trades)
 })
 
 //route to post trades
@@ -30,10 +43,11 @@ router.post('/', (req, res) => {
         symbol: req.body.symbol,
         direction: req.body.direction,
         entryPrice: req.body.entryPrice,
-        stopLoss: req.body.stopLoss
+        stopLoss: req.body.stopLoss,
+        recover: req.body.recover
     }
     trades.push(trade)
-    res.send(trades)
+    res.send(trades);
 })
 
 //router to delete trades
