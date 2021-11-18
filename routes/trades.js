@@ -29,6 +29,11 @@ router.get('/', (req, res) => {
         message = lastTrade.id + "/" + lastTrade.symbol + "/" + lastTrade.direction + "/" + lastTrade.entryPrice + "/" + lastTrade.stopLoss + "/" + lastTrade.recover
         res.send(message)
     }
+
+    if("command" in lastTrade){
+        message = lastTrade.id + "/" + lastTrade.command + "/" + lastTrade.direction + "/" + lastTrade.symbol 
+        res.send(message)
+    }   
 })
 
 //route to get all trades
@@ -38,13 +43,25 @@ router.get('/all', (req, res) => {
 
 //route to post trades
 router.post('/', (req, res) => {
-    const trade = {
-        id: id++,
-        symbol: req.body.symbol,
-        direction: req.body.direction,
-        entryPrice: req.body.entryPrice,
-        stopLoss: req.body.stopLoss,
-        recover: req.body.recover
+    let trade
+    if("recover" in req.body){
+         trade = {
+            id: id++,
+            symbol: req.body.symbol,
+            direction: req.body.direction,
+            entryPrice: req.body.entryPrice,
+            stopLoss: req.body.stopLoss,
+            recover: req.body.recover
+        }
+    }
+    else{
+        console.log('here')
+         trade = {
+             id: id++,
+             command: req.body.command,
+             direction: req.body.direction,
+             symbol: req.body.symbol,
+         }
     }
     trades.push(trade)
     res.send(trades);
