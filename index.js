@@ -30,7 +30,7 @@ app.use('/trades', tradeRoutes);
 
 //add routes get
 app.get('/', (req, res) => {
-    res.send('This is an API for Trading');
+    res.send('This is an API for Trading - jezreldavesondia');
 })
 
 //listen to port

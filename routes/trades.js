@@ -55,7 +55,6 @@ router.post('/', (req, res) => {
         }
     }
     else{
-        console.log('here')
          trade = {
              id: id++,
              command: req.body.command,
