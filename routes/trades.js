@@ -5,72 +5,101 @@ const express = require('express');
 //initialize router
 const router = express.Router();
 
-let trades = [
-   {
-    "id": 0,
-    "symbol": "GOLD",
-    "direction": "BUY",
-    "entryPrice": 1820,
-    "stopLoss": 1810,
-    "recover": false
-   }
-]
+//initialize fs
+const fs = require('fs');
 
-let id = 1
+let trades;
+
+let id = 0;
 
 let message = ""
+
+
 
 
 //all routes start with /trades
 //route to get all trades
 router.get('/', (req, res) => {
-    let lastTrade = trades[trades.length - 1]
-    if("recover" in lastTrade){
-        message = lastTrade.id + "/" + lastTrade.symbol + "/" + lastTrade.direction + "/" + lastTrade.entryPrice + "/" + lastTrade.stopLoss + "/" + lastTrade.recover
-        res.send(message)
-    }
+    //fs read trades.json
+    fs.readFile('./db/trades.json', (err, data) => {
+        trades = JSON.parse(data)
 
-    if("command" in lastTrade){
-        message = lastTrade.id + "/" + lastTrade.command + "/" + lastTrade.direction + "/" + lastTrade.symbol 
-        res.send(message)
-    }   
+        let lastTrade = trades[trades.length - 1]
+        console.log(lastTrade)
+        if ("recover" in lastTrade) {
+            message = lastTrade.id + "/" + lastTrade.symbol + "/" + lastTrade.direction + "/" + lastTrade.entryPrice + "/" + lastTrade.stopLoss + "/" + lastTrade.recover
+            res.send(message)
+        }
+
+        if ("command" in lastTrade) {
+            message = lastTrade.id + "/" + lastTrade.command + "/" + lastTrade.direction + "/" + lastTrade.symbol
+            res.send(message)
+        }
+
+    })
+
+
 })
 
 //route to get all trades
 router.get('/all', (req, res) => {
-    res.send(trades)
+    fs.readFile('./db/trades.json', (err, data) => {
+        trades = JSON.parse(data)
+        res.send(trades)
+    })
 })
 
 //route to post trades
 router.post('/', (req, res) => {
-    let trade
-    if("recover" in req.body){
-         trade = {
-            id: id++,
-            symbol: req.body.symbol,
-            direction: req.body.direction,
-            entryPrice: req.body.entryPrice,
-            stopLoss: req.body.stopLoss,
-            recover: req.body.recover
+
+    fs.readFile('./db/trades.json', function (err, data) {
+        let trade
+        trades = JSON.parse(data)
+
+
+        if ("recover" in req.body) {
+            trade = {
+                id: trades[trades.length - 1].id + 1,
+                symbol: req.body.symbol,
+                direction: req.body.direction,
+                entryPrice: req.body.entryPrice,
+                stopLoss: req.body.stopLoss,
+                recover: req.body.recover
+            }
+        } else {
+            trade = {
+                id: trades[trades.length - 1].id + 1,
+                command: req.body.command,
+                direction: req.body.direction,
+                symbol: req.body.symbol,
+            }
         }
-    }
-    else{
-         trade = {
-             id: id++,
-             command: req.body.command,
-             direction: req.body.direction,
-             symbol: req.body.symbol,
-         }
-    }
-    trades.push(trade)
-    res.send(trades);
+
+        console.log(trades)
+        trades.push(trade)
+        fs.writeFile("./db/trades.json", JSON.stringify(trades), (err) => {
+            if (err) {
+                console.log(err)
+            }
+            res.send(trades)
+        })
+    })
 })
 
 //router to delete trades
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    trades = trades.filter(trade => trade.id !== parseInt(id))
-    res.send(trades)
+
+    fs.readFile('./db/trades.json', (err, data) => {
+        trades = JSON.parse(data)
+        trades = trades.filter(trade => trade.id !== parseInt(id))
+        fs.writeFile("./db/trades.json", JSON.stringify(trades), (err) => {
+            if (err) {
+                console.log(err)
+            }
+            res.send(trades)
+        })
+    })
 })
 
 //export router
