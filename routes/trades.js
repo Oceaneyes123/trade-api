@@ -37,6 +37,10 @@ router.get('/', (req, res) => {
             res.send(message)
         }
 
+        if (!("recover" in lastTrade) || !("command" in lastTrade)) {
+            res.send('NO DATA AVAILABLE')
+        }
+
     })
 
 
@@ -50,12 +54,12 @@ router.get('/all', (req, res) => {
     })
 })
 
-router.get('/news', (req, res) => {
-    fs.readFile('./db/news.json', (err, data) => {
-        news = JSON.parse(data)
-        res.send(news)
-    })
-})
+// router.get('/news', (req, res) => {
+//     fs.readFile('./db/news.json', (err, data) => {
+//         news = JSON.parse(data)
+//         res.send(news)
+//     })
+// })
 
 //route to post trades
 router.post('/', (req, res) => {
