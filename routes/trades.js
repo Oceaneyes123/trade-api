@@ -9,6 +9,7 @@ const router = express.Router();
 const fs = require('fs');
 
 let trades;
+let news;
 
 let id = 0;
 
@@ -46,6 +47,13 @@ router.get('/all', (req, res) => {
     fs.readFile('./db/trades.json', (err, data) => {
         trades = JSON.parse(data)
         res.send(trades)
+    })
+})
+
+router.get('/news', (req, res) => {
+    fs.readFile('./db/news.json', (err, data) => {
+        news = JSON.parse(data)
+        res.send(news)
     })
 })
 

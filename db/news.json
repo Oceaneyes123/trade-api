@@ -1,0 +1,81 @@
+[{
+        "symbol": "EUR",
+        "year": 2021,
+        "month": 11,
+        "day": 23,
+        "hour": 16,
+        "minute": 30
+    },
+    {
+        "symbol": "NZD",
+        "year": 2021,
+        "month": 11,
+        "day": 24,
+        "hour": 9,
+        "minute": 0
+    },
+    {
+        "symbol": "USD",
+        "year": 2021,
+        "month": 11,
+        "day": 14,
+        "hour": 21,
+        "minute": 30
+    },
+    {
+        "symbol": "USD",
+        "year": 2021,
+        "month": 11,
+        "day": 24,
+        "hour": 24,
+        "minute": 0
+    },
+    {
+        "symbol": "GBP",
+        "year": 2021,
+        "month": 11,
+        "day": 26,
+        "hour": 1,
+        "minute": 0
+    },
+    {
+        "symbol": "USD",
+        "year": 2021,
+        "month": 11,
+        "day": 27,
+        "hour": 0,
+        "minute": 0
+    },
+    {
+        "symbol": "CAD",
+        "year": 2021,
+        "month": 11,
+        "day": 30,
+        "hour": 21,
+        "minute": 30
+    },
+    {
+        "symbol": "AUD",
+        "year": 2021,
+        "month": 12,
+        "day": 1,
+        "hour": 8,
+        "minute": 30
+    },
+    {
+        "symbol": "USD",
+        "year": 2021,
+        "month": 12,
+        "day": 1,
+        "hour": 21,
+        "minute": 15
+    },
+    {
+        "symbol": "USD",
+        "year": 2021,
+        "month": 12,
+        "day": 1,
+        "hour": 22,
+        "minute": 0
+    }
+]
