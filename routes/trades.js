@@ -54,12 +54,12 @@ router.get('/all', (req, res) => {
     })
 })
 
-// router.get('/news', (req, res) => {
-//     fs.readFile('./db/news.json', (err, data) => {
-//         news = JSON.parse(data)
-//         res.send(news)
-//     })
-// })
+router.get('/news', (req, res) => {
+    fs.readFile('./db/news.json', (err, data) => {
+        news = JSON.parse(data)
+        return res.send(news)
+    })
+})
 
 //route to post trades
 router.post('/', (req, res) => {
