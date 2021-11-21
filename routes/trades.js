@@ -29,16 +29,16 @@ router.get('/', (req, res) => {
         console.log(lastTrade)
         if ("recover" in lastTrade) {
             message = lastTrade.id + "/" + lastTrade.symbol + "/" + lastTrade.direction + "/" + lastTrade.entryPrice + "/" + lastTrade.stopLoss + "/" + lastTrade.recover
-            res.send(message)
+            return res.send(message)
         }
 
         if ("command" in lastTrade) {
             message = lastTrade.id + "/" + lastTrade.command + "/" + lastTrade.direction + "/" + lastTrade.symbol
-            res.send(message)
+            return res.send(message)
         }
 
         if (!("recover" in lastTrade) || !("command" in lastTrade)) {
-            res.send('NO DATA AVAILABLE')
+            return res.send('NO DATA AVAILABLE')
         }
 
     })
@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
 router.get('/all', (req, res) => {
     fs.readFile('./db/trades.json', (err, data) => {
         trades = JSON.parse(data)
-        res.send(trades)
+        return res.send(trades)
     })
 })
 
@@ -93,7 +93,7 @@ router.post('/', (req, res) => {
             if (err) {
                 console.log(err)
             }
-            res.send(trades)
+            return res.send(trades)
         })
     })
 })
@@ -109,7 +109,7 @@ router.delete('/:id', (req, res) => {
             if (err) {
                 console.log(err)
             }
-            res.send(trades)
+            return res.send(trades)
         })
     })
 })
