@@ -46,6 +46,8 @@ router.get('/', (req, res) => {
 
 })
 
+
+
 //route to get all trades
 router.get('/all', (req, res) => {
     fs.readFile('./db/trades.json', (err, data) => {
@@ -111,6 +113,18 @@ router.delete('/:id', (req, res) => {
             }
             return res.send(trades)
         })
+    })
+})
+
+
+router.get('/reset', (req, res) => {
+    console.log('should reset')
+    trades = [{id: 0}]
+    fs.writeFile("./db/trades.json", JSON.stringify(trades), (err) => {
+        if (err) {
+            console.log(err)
+        }
+        return res.send(trades)
     })
 })
 
