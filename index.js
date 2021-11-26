@@ -1,16 +1,12 @@
 //import express
 const express = require('express');
 
-//import body-parser
-const bodyParser = require('body-parser');
-
 // import routes
 const tradeRoutes = require('./routes/trades.js');
+const notificationRoutes = require('./routes/notification.js');
 
 //initialize express
 const app = express();
-
-
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads
@@ -27,6 +23,7 @@ app.use(function(req, res, next) {
 
 //use routes
 app.use('/trades', tradeRoutes);
+app.use('/notification', notificationRoutes);
 
 //add routes get
 app.get('/', (req, res) => {
