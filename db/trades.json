@@ -1,1 +1,3 @@
-[{"id":0},{"id":2,"symbol":"GOLD","direction":"SELL","entryPrice":"1797.60","stopLoss":"1802.00","recover":false},{"id":3,"symbol":"GBPJPY","direction":"BUY","entryPrice":"152.550","stopLoss":"152.050","recover":false},{"id":4,"symbol":"GOLD","direction":"BUY","entryPrice":"1795","stopLoss":"1786","recover":false},{"id":5,"symbol":"GOLD","direction":"BUY","entryPrice":"1795","stopLoss":"1786","recover":false},{"id":6,"symbol":"GBPJPY","direction":"SELL","entryPrice":"152.020","stopLoss":"152.559","recover":false},{"id":7,"symbol":"USDJPY","direction":"BUY","entryPrice":"114.366","stopLoss":"114.066","recover":false},{"id":8,"symbol":"EURAUD","direction":"SELL","entryPrice":"1.5727","stopLoss":"1.5767","recover":false}]
+[{
+    "id": 0
+}]
