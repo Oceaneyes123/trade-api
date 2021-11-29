@@ -106,6 +106,23 @@ router.post('/', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    let notificationList
+    fs.readFile('./db/notification.json', (err, data) => {
+        notificationList = JSON.parse(data)
+        //remove index from notificationList equal to id
+        notificationList.splice(id, 1)
+
+        fs.writeFile("./db/notification.json", JSON.stringify(notificationList), (err) => {
+            if (err) {
+                console.log(err)
+            }
+            return res.send(notificationList)
+        })
+    })
+})
+
 
 //export router
 module.exports = router;
