@@ -81,11 +81,15 @@ router.post('/', (req, res) => {
 
         var numbers = notification.match(/\d+\.?\d*/g);
 
-        console.log(numbers)
-
-        if (numbers.length >= 3) {
-            hasPrices = true
+        if (numbers != null) {
+            if (numbers.length >= 3) {
+                hasPrices = true
+            }
+        } else {
+            console.log('number is null')
         }
+
+
 
         console.log(hasPrices)
 
