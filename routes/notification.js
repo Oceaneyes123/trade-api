@@ -85,12 +85,7 @@ router.post('/', (req, res) => {
             if (numbers.length >= 3) {
                 hasPrices = true
             }
-        } else {
-            console.log('number is null')
         }
-
-
-
         console.log(hasPrices)
 
         console.log(notificationList)
