@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
     fs.readFile('./db/notification.json', (err, data) => {
         let notificationList
         let hasSymbol = false
-        let hasDriection = false
+        let hasDirection = false
         let hasPrices = false
 
 
