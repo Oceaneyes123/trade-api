@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
             //tempsymbol to lower case
             tempSymbol = tempSymbol.toLowerCase();
 
-            //if tempSymbol is present in the sentence, set symbol to tempSymbol ///
+            //if tempSymbol is present in the sentence, set symbol to tempSymbol //
             if (notification.toLowerCase().includes(tempSymbol)) {
                 hasSymbol = true
             }
