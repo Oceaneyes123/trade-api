@@ -14,7 +14,7 @@ let id = 0;
 
 let message = "";
 
-//all routes start with /trades /
+//all routes start with /trades /./
 //route to get all trades
 router.get("/", (req, res) => {
     //fs read trades.json
